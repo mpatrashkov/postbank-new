@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { ScrollView, View } from "react-native";
 import NavigationTitle from '../components/NavigationTitle';
 import LeaderboardPlace from '../components/LeaderboardPlace';
+import { clamp } from '../lib';
 
 const Seperator = () => <View style={{
                                 borderBottomColor: "#bbb",
@@ -11,6 +12,30 @@ const Seperator = () => <View style={{
 class LeaderboardsScreen extends Component {
     static navigationOptions = {
         headerTitle: <NavigationTitle text="Leaderboards"/>
+    }
+
+    state = {
+        people: [{
+            name: "Miroslav Patrashkov",
+            points: 100,
+            currentUser: false
+        }, {
+            name: "Miroslav Patrashkov",
+            points: 100,
+            currentUser: false
+        }, {
+            name: "Miroslav Patrashkov",
+            points: 100,
+            currentUser: false
+        }, {
+            name: "Miroslav Patrashkov",
+            points: 100,
+            currentUser: true
+        }, {
+            name: "Miroslav Patrashkov",
+            points: 100,
+            currentUser: false
+        }]
     }
 
     getUserName = () => {
@@ -27,14 +52,18 @@ class LeaderboardsScreen extends Component {
     render() {
         return (
             <ScrollView>
-                <LeaderboardPlace size={4} userName={this.getUserName()} points={100}/>
-                <Seperator/>
-                <LeaderboardPlace size={3} userName={this.getUserName()} points={100}/>
-                <Seperator/>
-                <LeaderboardPlace size={2} userName={this.getUserName()} points={100}/>
-                <Seperator/>
-                <LeaderboardPlace size={1} userName={this.getUserName()} points={100}/>
-                <Seperator/>
+                {this.state.people.map((person, index) => (
+                    
+                    <LeaderboardPlace 
+                        key={index} 
+                        size={clamp(5 - index, 1, 4)} 
+                        number={index + 1} 
+                        userName={person.name} 
+                        points={person.points} 
+                        me={person.currentUser}/>
+                    
+                
+            ))}
             </ScrollView>
         )
     }

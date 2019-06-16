@@ -1,39 +1,9 @@
 import React, { Component } from 'react';
 import { View, Text, Button } from "react-native";
-// import { GoogleSignin, GoogleSigninButton, statusCodes } from 'react-native-google-signin';
 import { Google } from 'expo';
 import { fetchPost } from '../lib';
-
-// GoogleSignin.configure({
-//     scopes: [
-//         "https://www.googleapis.com/auth/fitness.activity.read",
-//         "https://www.googleapis.com/auth/fitness.activity.write",
-//         "https://www.googleapis.com/auth/fitness.blood_glucose.read",
-//         "https://www.googleapis.com/auth/fitness.blood_glucose.write",
-//         "https://www.googleapis.com/auth/fitness.blood_pressure.read",
-//         "https://www.googleapis.com/auth/fitness.blood_pressure.write",
-//         "https://www.googleapis.com/auth/fitness.body.read",
-//         "https://www.googleapis.com/auth/fitness.body.write",
-//         "https://www.googleapis.com/auth/fitness.body_temperature.read",
-//         "https://www.googleapis.com/auth/fitness.body_temperature.write",
-//         "https://www.googleapis.com/auth/fitness.location.read",
-//         "https://www.googleapis.com/auth/fitness.location.write",
-//         "https://www.googleapis.com/auth/fitness.nutrition.read",
-//         "https://www.googleapis.com/auth/fitness.nutrition.write",
-//         "https://www.googleapis.com/auth/fitness.oxygen_saturation.read",
-//         "https://www.googleapis.com/auth/fitness.oxygen_saturation.write",
-//         "https://www.googleapis.com/auth/fitness.reproductive_health.read",
-//         "https://www.googleapis.com/auth/fitness.reproductive_health.write"
-
-//     ],
-//     webClientId: 'yIr_OwVrJBU4nNuCS2XHqPvG', // client ID of type WEB for your server (needed to verify user ID and offline access)
-//     offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
-//     // hostedDomain: '', // specifies a hosted domain restriction
-//     // loginHint: '', // [iOS] The user's ID, or email address, to be prefilled in the authentication UI if possible. [See docs here](https://developers.google.com/identity/sign-in/ios/api/interface_g_i_d_sign_in.html#a0a68c7504c31ab0b728432565f6e33fd)
-//     // forceConsentPrompt: true, // [Android] if you want to show the authorization prompt at each login.
-//     // accountName: '', // [Android] specifies an account name on the device that should be used
-//     // iosClientId: '<FROM DEVELOPER CONSOLE>', // [iOS] optional, if you want to specify the client ID of type iOS (otherwise, it is taken from GoogleService-Info.plist)
-//   });
+import { inject } from 'mobx-react';
+// import AsyncStorage from '@react-native-community/async-storage';
 
 class SignInScreen extends Component {
     static navigationOptions = {
@@ -42,8 +12,7 @@ class SignInScreen extends Component {
 
     state = {
         isSigninInProgress: false,
-        userInfo: {},
-        // dbb: "0"
+        userInfo: {}
     }
 
     signIn = async () => {
@@ -71,6 +40,8 @@ class SignInScreen extends Component {
             });
 
             if (result.type === "success") {
+                // this.props.store.token = result.accessToken;
+                // AsyncStorage.set
                 return result.accessToken;
             }
             else {
@@ -100,11 +71,9 @@ class SignInScreen extends Component {
                 body: JSON.stringify({
                     token: result
                 })
-
             });
             let res = await data.json();
-            //console.log(res)
-            //localStorage.setItem("token", result);
+            
             this.props.navigation.replace("Main");
         }
     }
@@ -112,7 +81,9 @@ class SignInScreen extends Component {
     render() {
         return (
             <View style={{ paddingHorizontal: 50, marginTop: 120 }}>
+                {/* <Text>123</Text> */}
                 <Button style={{ width: "90%" }} onPress={this.onClick} title="Sign in with Google"></Button>
+                {/* <Text>{this.props.store.token}</Text> */}
             </View>
         );
     }

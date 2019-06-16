@@ -38,17 +38,6 @@ class LeaderboardsScreen extends Component {
         }]
     }
 
-    getUserName = () => {
-        switch(this.props.navigation.getParam("period", "week")) {
-            case "week":
-                return "Miroslav Patrashkov";
-            case "month":
-                return "Georgi Atanasov";
-            case "year":
-                return "Roskata"
-        }
-    }
-
     render() {
         return (
             <ScrollView>

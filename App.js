@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Platform, StyleSheet, Text, View } from 'react-native';
 import Navigation from "./navigation/AppNavigation";
+import { Provider } from 'mobx-react';
+import RootStore from './store/store';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -11,7 +13,9 @@ export default class App extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Navigation style={styles.navigation}/>
+        <Provider store={new RootStore()}>
+          <Navigation style={styles.navigation}/>
+        </Provider>
       </View>
     );
   }

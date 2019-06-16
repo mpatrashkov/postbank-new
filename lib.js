@@ -1,4 +1,4 @@
-const url = "http://localhost:9999/";
+const url = "http://192.168.43.27:9999/";
 
 export function fetchPost(address, data) {
     return fetch( url + address, {

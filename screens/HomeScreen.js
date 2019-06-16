@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, ScrollView } from "react-native";
 import FullHeightView from '../components/FullHeightView';
 import NavigationTitle from '../components/NavigationTitle';
-import PostBankLogo from '../components/PostBankLogo';
+import Summary from '../components/Summary';
 import LevelInfo from '../components/LevelInfo';
 
 class HomeScreen extends Component {
@@ -13,7 +13,7 @@ class HomeScreen extends Component {
     render() {
         return (
             <ScrollView>
-                <PostBankLogo></PostBankLogo>
+                <Summary></Summary>
                 <LevelInfo></LevelInfo>
             </ScrollView>
         )

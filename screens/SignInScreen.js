@@ -42,30 +42,8 @@ class SignInScreen extends Component {
     state = {
         isSigninInProgress: false,
         userInfo: {},
-        dbb: "0"
+        // dbb: "0"
     }
-
-    // signIn = async () => {
-    //     // this.props.navigation.replace("Main");
-    //     try {
-    //         await GoogleSignin.hasPlayServices();
-    //         const userInfo = await GoogleSignin.signIn();
-    //         this.setState({ userInfo });
-    //         this.setState({ dbb: 5 });
-    //     } catch (error) {
-    //         if (error.code === statusCodes.SIGN_IN_CANCELLED) {
-    //             this.setState({ dbb: 1 });
-    //         } else if (error.code === statusCodes.IN_PROGRESS) {
-    //             this.setState({ dbb: 2 });
-    //         } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
-    //             this.setState({ dbb: 3 });
-    //         } else {
-    //             this.setState({ dbb: error.code });
-    //         }
-    //     }
-    // }
-
-    
 
     signIn = async () => {
         try {
@@ -89,27 +67,21 @@ class SignInScreen extends Component {
     onClick = async () => {
         const result = await this.signIn();
         if(result.cancelled) {
-            this.setState({ dbb: 1});
+            
         }
         else if(result.error) {
-            this.setState({ dbb: 2 });
+            
         }
         else {
-            this.setState({ dbb: 3});
+            fetch("")
+            this.props.navigation.replace("Main");
         }
     }
 
     render() {
         return (
-            <View>
-                {/* <GoogleSigninButton
-                    style={{ width: 192, height: 48 }}
-                    size={GoogleSigninButton.Size.Wide}
-                    color={GoogleSigninButton.Color.Dark}
-                    onPress={this.signIn}
-                    disabled={this.state.isSigninInProgress} /> */}
-                <Button onPress={this.onClick} title="123"></Button>
-                <Text style={{marginTop: 100}}>{this.state.dbb}</Text>
+            <View style={{ paddingHorizontal: 50, marginTop: 120 }}>
+                <Button style={{ width: "90%" }} onPress={this.onClick} title="Sign in with Google"></Button>
             </View>
         );
     }

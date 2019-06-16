@@ -59,36 +59,36 @@ LeaderboardsTopNavigation.navigationOptions = {
 }
 
 const LeaderboardsStack = createStackNavigator({
-    Leaderboards: LeaderboardsTopNavigation,
-    tabBarIcon: ({ focused }) => (
-        <TabBarIcon
-            focused={focused}
-            name="format-list-numbered" />
-    )
+    Leaderboards: LeaderboardsTopNavigation
 }, {
     navigationOptions: {
         headerTitle: <NavigationTitle text="Leaderboards" />
     }
 });
 LeaderboardsStack.navigationOptions = {
-    tabBarLabel: "Leaderboards"
+    tabBarLabel: "Leaderboards",
+    tabBarIcon: ({ focused }) => (
+        <TabBarIcon
+            focused={focused}
+            name="format-list-numbered" />
+    )
 }
 
 const RewardsStack = createStackNavigator({
     Rewards: RewardsScreen,
+});
+RewardsStack.navigationOptions = {
+    tabBarLabel: "Rewards",
     tabBarIcon: ({ focused }) => (
         <TabBarIcon
             focused={focused}
             name="trophy" />
     )
-});
-RewardsStack.navigationOptions = {
-    tabBarLabel: "Rewards"
 }
 
 const BottomNavigation = createBottomTabNavigator({
-    LeaderboardsStack,
     HomeStack,
+    LeaderboardsStack,
     RewardsStack
 });
 

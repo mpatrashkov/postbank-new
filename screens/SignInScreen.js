@@ -91,7 +91,7 @@ class SignInScreen extends Component {
 
         }
         else {
-            let data = await fetch("http://192.168.43.27:9999/activity/steps", {
+            let data = await fetch("http://192.168.43.27:9999/auth/signin", {
                 method: "POST",
                 headers: {
                     Accept: 'application/json',
@@ -103,8 +103,6 @@ class SignInScreen extends Component {
 
             });
             let res = await data.json();
-            //console.log(res)
-            //localStorage.setItem("token", result);
             this.props.navigation.replace("Main");
         }
     }

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, Button } from "react-native";
 // import { GoogleSignin, GoogleSigninButton, statusCodes } from 'react-native-google-signin';
 import { Google } from 'expo';
+import { fetchPost } from '../lib';
 
 // GoogleSignin.configure({
 //     scopes: [
@@ -73,7 +74,9 @@ class SignInScreen extends Component {
             
         }
         else {
-            fetch("")
+            fetchPost("activity/steps", {
+                token: result
+            });
             this.props.navigation.replace("Main");
         }
     }

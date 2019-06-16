@@ -97,6 +97,6 @@ BottomNavigation.navigationOptions = {
 }
 
 export default createStackNavigator({
-    Signin: SignInScreen,
+    // Signin: SignInScreen,
     Main: BottomNavigation
 })

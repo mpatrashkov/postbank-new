@@ -62,7 +62,7 @@ class SignInScreen extends Component {
 
         }
         else {
-            let data = await fetch("http://192.168.43.27:9999/activity/steps", {
+            let data = await fetch("http://192.168.43.27:9999/auth/signin", {
                 method: "POST",
                 headers: {
                     Accept: 'application/json',
